@@ -2,12 +2,13 @@ import pandas as pd
 
 df = pd.read_csv("data/raw/02_nav_history.csv")
 
-# Parse dates
 df["date"] = pd.to_datetime(
     df["date"],
-    format="%d-%m-%Y",
     errors="coerce"
 )
+
+print("Missing dates:", df["date"].isna().sum())
+print(df["date"].head())
 
 # Sort
 df = df.sort_values(
